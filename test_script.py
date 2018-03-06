@@ -35,7 +35,7 @@ def test_get_self():
         if response.text[:16] not in ["Places in 5KM Ra", "No Place found i"]:
             assert response
 
-def test_get_cityname():
+def test_get_city_name():
     url = 'http://127.0.0.1:8000/get_city_name'
     data = ["28.609+77.223","28.640+77.062"]
     headers = {'Content-type': 'text/plain'}
@@ -49,4 +49,4 @@ def test_get_cityname():
 test_post_location()
 test_get_using_postgress()
 test_get_self()
-test_get_cityname()
+test_get_city_name()
