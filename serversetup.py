@@ -9,7 +9,7 @@ import psycopg2
 hostname = 'localhost'
 username = 'postgres'
 database = 'locinfo'
-password = 'YOUR_POSTGRES_PASSWORD'
+password = 'YOUR_POSTGRES_PASS'
 
 ''' part of Task 1'''
 print("Setting up geo_info table....")

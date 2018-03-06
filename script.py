@@ -7,7 +7,7 @@ from shapely.geometry import MultiPoint,Point, Polygon
 hostname = 'localhost'
 username = 'postgres'
 database = 'locinfo'
-password = 'YOUR_POSTGRES_PASSWORD'
+password = 'YOUR_POSTGRES_PASS'
 myConnection = psycopg2.connect( host=hostname, password=password, user=username, dbname=database )
 
 app = Flask(__name__)
@@ -106,7 +106,7 @@ def getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2):
     dLon = radians(lon2 - lon1)
     a = sin(dLat/2) * sin(dLat/2) + cos(radians(lat1)) * cos(radians(lat2)) * sin(dLon/2) * sin(dLon/2)
     c = 2 * atan2(sqrt(a), sqrt(1-a))
-    d = R * c * 1000 ;
+    d = R * c * 1000
     return d
 
 @app.route('/get_city_name', methods=['GET','POST'])

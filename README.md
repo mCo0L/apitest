@@ -63,3 +63,7 @@ This api uses geojson which is used to define shapes of locations. In the provid
 Working:
 
 curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.610+77.223
+
+## To Test
+
+Simply run "py.test test_script.py"
