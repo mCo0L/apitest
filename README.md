@@ -36,10 +36,10 @@ There are 4 API's:
 This API can be used to enter a new entry in the geo_info table of the database.
 This API checks if the PINCODE is already present in the database or if there is any nearby latitude+longitude location already available in database. if both conditions are not present then a new entry in made in the database.
 
-Working:
-
+### Working:
+'''
 curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/post_location --data-ascii 28.699+77.111+IN/110085+Rohini+Delhi
-
+'''
 ### Output
 When the location is not present in database:
 ![post_location1](https://i.imgur.com/N2m85yU.png)
