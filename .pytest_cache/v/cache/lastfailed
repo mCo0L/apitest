@@ -1,11 +1,7 @@
 {
   "test.py::test_get_using_self": true,
   "test.py::test_post_location": true,
-  "test_script.py": true,
   "test_script.py::test_post_location": true,
-  "test_script.py::test_post_location[28.494+77.878+IN/121010+Faridabad+Haryana]": true,
-  "test_script.py::test_post_location[28.699+77.111+IN/110085+Rohini+Delhi]": true,
-  "test_script.py::test_post_location[28.699+77.111+IN/110985+Rohini+Delhi]": true,
   "test_script.py::test_post_location[A Nearby/Same Location already present in DataBase-28.494+77.878+IN/121010+Faridabad+Haryana]": true,
   "test_script.py::test_post_location[A Nearby/Same Location already present in DataBase-28.699+77.111+IN/110085+Rohini+Delhi]": true,
   "test_script.py::test_post_location[A Nearby/Same Location already present in DataBase-28.699+77.111+IN/110985+Rohini+Delhi]": true,

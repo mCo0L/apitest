@@ -91,8 +91,8 @@ curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --d
 
 Simply run
 ```
-test.py
+py.test test_script.py
 ```
 ### Output
 
-![pyTest](https://i.imgur.com/ySukh3B.png)
+![pyTest](https://i.imgur.com/ATdyXkb.png)
