@@ -57,6 +57,3 @@ def test_get_city_name(client, test_input):
     result = client.get("/get_city_name", data=test_input, content_type='text/plain')
     assert result.status_code == 200
     print('/get_using_self : result - '+str(result.data))
-
-if __name__ == "__main__":
-    unittest.main(exit=False)
