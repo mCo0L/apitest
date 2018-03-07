@@ -1,7 +1,5 @@
 import unittest
-import os
 from script import app
-#from Api import app
 
 class ApiTestCase(unittest.TestCase):
     url = 'http://127.0.0.1:8000/'

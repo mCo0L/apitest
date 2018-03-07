@@ -42,13 +42,13 @@ curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/post_location --
 ```
 ## Output
 ### When the location is not present in database:
-![post_location1](https://i.imgur.com/N2m85yU.png)
+![post_location1](https://i.imgur.com/EnRU4N0.png)
 
 ### When the pincode is alreday present in database:
-![post_location2](https://i.imgur.com/cy8v343.png)
+![post_location2](https://i.imgur.com/1PAgocC.png)
 
 ### When a nearby location present in database:
-![post_location3](https://i.imgur.com/CRzZL5c.png)
+![post_location3](https://i.imgur.com/E4CXuXQ.png)
 
 
 ### 2. /get_using_postgres :
@@ -61,7 +61,7 @@ curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_postgre
 ```
 ### Output
 
-![get_using_postgres](https://i.imgur.com/hdcDEaW.png)
+![get_using_postgres](https://i.imgur.com/E3myPg9.png)
 
 ### 3. /get_using_self :
 
@@ -73,7 +73,7 @@ curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_self --
 ```
 ### Output
 
-![get_using_self](https://i.imgur.com/182iR0S.png)
+![get_using_self](https://i.imgur.com/UzMEhGm.png)
 
 ### 4. /get_city_name :
 
@@ -85,14 +85,14 @@ curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --d
 ```
 ### Output
 
-![get_city_name](https://i.imgur.com/iOuHkXZ.png)
+![get_city_name](https://i.imgur.com/YPO71Bt.png)
 
 ## To Test
 
 Simply run
 ```
-py.test test_script.py
+test.py
 ```
 ### Output
 
-![pyTest](https://i.imgur.com/s8VnPjj.png)
+![pyTest](https://i.imgur.com/ySukh3B.png)
