@@ -30,7 +30,6 @@ def post_location():
                 """
                 After checking the condition of pincode.
                 CHECKING IF A NEARBY LOCATION IS PRESENT IN DATABASE
-
                 This condition checks if a location in radius of almost 2.2km is present.
                 """
 
