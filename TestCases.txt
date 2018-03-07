@@ -1,0 +1,64 @@
+Test Cases :
+  API 1 (POST) : /post_location
+    Test command: curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/post_location --data-ascii latitude+longitude+key+place_name+admin_name1
+
+    Case 1: curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/post_location --data-ascii 28.699+77.111+IN/110085+Rohini+Delhi
+    Output: Location already present in DataBase
+
+    Case 2: curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/post_location --data-ascii 28.699+77.111+IN/110985+Rohini+Delhi
+    Output: A Nearby/Same Location already present in DataBase
+
+    Case 3: curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/post_location --data-ascii 28.494+77.878+IN/121010+Faridabad+Haryana
+    Output: Location Added: ['28.494', '77.878', 'IN/121010', 'Faridabad', 'Haryana']
+
+  API 2 (GET) : /get_using_postgres
+    Test command: curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/get_using_postgres --data-ascii latitude+longitude
+
+    Case 1: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_postgres --data-ascii 28.610+77.223
+    Output: Places in 5KM Radius:['Connaught Place', 'Darya Ganj', 'Azad Nagar', 'Wazirpur Phase Iii', 'Zafrabad', 'Civil Lines', 'Paharganj', 'Shakurbasti', 'Munirka', 'Janakpuri', 'Uttam Nagar']
+
+    Case 2: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_postgres --data-ascii 28.584+77.359
+    Output: No Place found in 5km Area!
+
+    Case 3: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_postgres --data-ascii 28.631+77.163
+    Output: Places in 5KM Radius:['Flatted Factories Complex', 'Malcha Marg', 'Postal Saving Bureau', 'Kidwai Nagar', 'Lajpat Nagar', 'Jamia Nagar', 'Punjabi Bagh', 'J 6block Rajouri Garden', 'Naraina Industrial Estate', 'Himayunpur Extn', 'Nagloi', 'Badli', 'Nangal Rava', 'Arjan Garh', 'Kailash', 'Andrews Ganj', 'New Rajinder Nagar', 'Bijwasan', 'Hamdard Nagar', 'Paschim Vihar', 'Hari Nagar Be Block', 'East Of Kailash', 'R K Puram', 'D D A Munirka', 'Kanjhawala', 'Khera Kalan', 'Mangolpuri     Block A', 'Kutubgarh', 'Himmatpuri', 'Shakarpur', 'Nand Nagri A Block', 'Gokulpuri', 'Bhajan Pura']
+
+  API 3 (GET) : /get_using_self
+    Test command: curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/get_using_self --data-ascii latitude+longitude
+
+    Case 1: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_self --data-ascii 28.610+77.223
+    Output: Places in 5km radius of given point are: ['Connaught Place', 'Darya Ganj', 'Aliganj', 'Rashtrapati Bhawan', 'Lower Camp Anand Parbat', 'Bara Tooti', 'Patel Nagar', 'Azad Nagar', 'Wazirpur Phase Iii', 'Zafrabad', 'Civil Lines', 'Paharganj', 'Shakurbasti', 'Munirka', 'Janakpuri', 'Uttam Nagar']
+
+    Case 2: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_self --data-ascii 28.584+77.359
+    Output: No Place found in 5km Area!
+
+    Case 3: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_self --data-ascii 28.631+77.163
+    Output: Places in 5km radius of given point are: ['Lower Camp Anand Parbat', 'Flatted Factories Complex', 'Malcha Marg', 'Postal Saving Bureau', 'Kidwai Nagar', 'Lajpat Nagar', 'Jamia Nagar', 'Punjabi Bagh', 'J 6block Rajouri Garden', 'Naraina Industrial Estate', 'Himayunpur Extn', 'Nagloi', 'Badli', 'Nangal Rava', 'Arjan Garh', 'Kailash', 'Andrews Ganj', 'New Rajinder Nagar', 'Bijwasan', 'Hamdard Nagar', 'Paschim Vihar', 'Hari Nagar Be Block', 'East Of Kailash', 'R K Puram', 'D D A Munirka', 'Kanjhawala', 'Khera Kalan', 'Mangolpuri Block A', 'Kutubgarh', 'Himmatpuri', 'Shakarpur', 'Nand Nagri A Block', 'Gokulpuri', 'Bhajan Pura']
+
+  API 4 (GET) : /get_city_name
+    Test command: curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/get_city_name --data-ascii latitude+longitude
+
+
+    Case 1: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.610+77.223
+    Output: Location found in: Central Delhi
+
+    Case 2: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.584+77.359
+    Output: Location found in: Noida
+
+    Case 3: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.631+77.163
+    Location found in: South West Delhi
+
+    Case 4: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.595+77.225
+    Output: Location found in: South Delhi
+
+    Case 5: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.726+77.168
+    Output: Location found in: North West Delhi
+
+    Case 6: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.489+77.025
+    Output: Location found in: Gurgaon
+
+    Case 7: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.442+77.315
+    Output: Location found in: Faridabad
+
+    Case 8: curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.153+77.319
+    Output: Location not found!

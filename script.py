@@ -103,7 +103,10 @@ def get_using_self():
                     distance = getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2)
                     if distance<=5000:
                         lis.append(place)
-                return "Places in 5km radius of given point are: " +str(lis)
+                if lis:
+                    return "Places in 5km radius of given point are: " +str(lis)
+                else:
+                    return "No Place found in 5km Area!"
         except:
             print("Invalid input provided!")
             return "Invalid Input!"
