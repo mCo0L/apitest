@@ -7,7 +7,7 @@ from shapely.geometry import MultiPoint,Point, Polygon
 hostname = 'localhost'
 username = 'postgres'
 database = 'locinfo'
-password = 'YOUR_POSTGRES_PASS'
+password = 'postgres123'
 myConnection = psycopg2.connect( host=hostname, password=password, user=username, dbname=database )
 
 app = Flask(__name__)
@@ -63,7 +63,7 @@ def get_using_postgres():
 
             cur=myConnection.cursor()
             query="SELECT geo_info.place_name FROM geo_info \
-            WHERE earth_box(ll_to_earth({},{}),5000) @> ll_to_earth(geo_info.latitude, geo_info.longitude)".format(float(lat),float(lon))
+            WHERE earth_box(ll_to_earth({},{}),{}) @> ll_to_earth(geo_info.latitude, geo_info.longitude)".format(float(lat),float(lon), 5000*0.621371)
             cur.execute(query)
 
             lis=[]
@@ -82,6 +82,8 @@ def get_using_self():
         try:
             text = request.data.decode("utf-8")
             lat1,lon1 = text.split("+")
+            lat1 = float(lat1)
+            lon1 = float(lon1)
             cur=myConnection.cursor()
             query="SELECT place_name,latitude,longitude FROM geo_info"
             cur.execute(query)
@@ -90,9 +92,15 @@ def get_using_self():
             else:
                 lis=[]
                 for place,lat2,lon2 in cur.fetchall():
-                    if (lat2 is None) or (lon2 is None):
+                    if lat2 is not None:
+                        lat2 = float(lat2)
+                    else:
                         continue
-                    distance = getDistanceFromLatLonInKm(float(lat1), float(lon1), float(lat2), float(lon2))
+                    if lon2 is not None:
+                        lon2 = float(lon2)
+                    else:
+                        continue
+                    distance = getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2)
                     if distance<=5000:
                         lis.append(place)
                 return "Places in 5km radius of given point are: \n" + "\n".join(lis)

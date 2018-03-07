@@ -19,6 +19,7 @@
 7. change postgres database password in script.py and serversetup.py files.
 8. on command prompt cd back to the root directory (apitest) of virtual env and run "python serversetup.py"
 9. In PG ADMIN Query tool, run
+
     CREATE EXTENSION "cube";
     CREATE EXTENSION "earthdistance";
 
@@ -39,6 +40,17 @@ Working:
 
 curl -H "Content-type:text/plain" -X POST http://127.0.0.1:8000/post_location --data-ascii 28.699+77.111+IN/110085+Rohini+Delhi
 
+### Output
+When the location is not present in database:
+![post_location1](https://i.imgur.com/N2m85yU.png)
+
+When the pincode is alreday present in database:
+![post_location2](https://i.imgur.com/cy8v343.png)
+
+When a nearby location present in database:
+![post_location3](https://i.imgur.com/CRzZL5c.png)
+
+
 ### 2. /get_using_postgres :
 
 This API can be used to all the locations present in the database within 5km radius of the given point. This API Uses postgres's earthdistance for calculating all the points which are present within 5Km radius of given point.
@@ -47,6 +59,9 @@ Working:
 
 curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_postgres --data-ascii 28.610+77.223
 
+### Output
+
+![get_using_postgres](https://i.imgur.com/hdcDEaW.png)
 
 ### 3. /get_using_self :
 
@@ -56,6 +71,10 @@ Working:
 
 curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_using_self --data-ascii 28.610+77.223
 
+### Output
+
+![get_using_self](https://i.imgur.com/182iR0S.png)
+
 ### 4. /get_city_name :
 
 This api uses geojson which is used to define shapes of locations. In the provided geojson there are boundaries coordinates provided of different cities, with this API we can check if the given point is present inside the boundaries of any location provided in the geojson and return the name of the location of which the point is inside.
@@ -64,6 +83,14 @@ Working:
 
 curl -H "Content-type:text/plain" -X GET http://127.0.0.1:8000/get_city_name --data-ascii 28.610+77.223
 
+### Output
+
+![get_city_name](https://i.imgur.com/iOuHkXZ.png)
+
 ## To Test
 
 Simply run "py.test test_script.py"
+
+### Output
+
+![pyTest](https://i.imgur.com/s8VnPjj.png)
