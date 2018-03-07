@@ -1,8 +1,8 @@
-from flask import Flask, request, json
 from math import radians, atan2, sin, cos, sqrt
 import pandas as pd
 import psycopg2
 from shapely.geometry import MultiPoint,Point, Polygon
+from flask import Flask, request
 
 hostname = 'localhost'
 username = 'postgres'
@@ -48,7 +48,7 @@ def post_location():
                     myConnection.commit()
 
                     lis = str(request.data)[2:-1].split('+')
-                    return "---Location added--- \nLatitude: {} \nlongitude: {} \nPincode: {} \nPlace: {} \nState: {}".format(*lis)
+                    return "Location Added: "+str(lis)
         except:
             print("Invalid input provided!")
             return "Invalid Input!"
@@ -71,7 +71,7 @@ def get_using_postgres():
                 return "No Place found in 5km Area!"
             for a in cur.fetchall():
                 lis.append(str(a)[2:-3])
-            return "Places in 5KM Radius:\n" + "\n".join(lis)
+            return "Places in 5KM Radius:" +str(lis)
         except:
             print("Invalid input provided!")
             return "Invalid Input!"
@@ -103,7 +103,7 @@ def get_using_self():
                     distance = getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2)
                     if distance<=5000:
                         lis.append(place)
-                return "Places in 5km radius of given point are: \n" + "\n".join(lis)
+                return "Places in 5km radius of given point are: " +str(lis)
         except:
             print("Invalid input provided!")
             return "Invalid Input!"
