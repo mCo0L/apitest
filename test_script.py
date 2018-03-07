@@ -15,7 +15,6 @@ def client():
                              "28.494+77.878+IN/121010+Faridabad+Haryana",
                           ])
 def test_post_location(client, test_input):
-    expected_output = ["Location already present in DataBase", "A Nearby/Same Location already present in DataBase"]
     result = client.post("/post_location",data=test_input, content_type='text/plain')
     assert result.status_code ==  200
     print('/post_location : result - '+str(result.data))
